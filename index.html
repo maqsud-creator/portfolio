@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Maqsud — Portfolio</title>
+
+  <!-- Google Font: Inter (Zamonaviy va chiroyli shrift) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b0b0f;
+      color: white;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    nav {
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 11, 15, 0.85);
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: #8b5cf6;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: #aaa;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      color: white;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 8% 60px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .small-text {
+      color: #8b5cf6;
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(45px, 8vw, 85px);
+      line-height: 1.1;
+      margin-bottom: 25px;
+      font-weight: 800;
+    }
+
+    h1 span {
+      color: #8b5cf6;
+    }
+
+    .hero p {
+      color: #aaa;
+      max-width: 600px;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 23px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    .primary {
+      background: #8b5cf6;
+      border-color: #8b5cf6;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      opacity: 0.85;
+    }
+
+    section {
+      padding: 90px 8%;
+    }
+
+    .section-title {
+      font-size: 38px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .section-description {
+      color: #999;
+      margin-bottom: 40px;
+    }
+
+    .about {
+      max-width: 800px;
+    }
+
+    .about p {
+      color: #aaa;
+      font-size: 18px;
+    }
+
+    /* STATISTIKA VA DAROMAD GRIDI */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .dashboard-card {
+      background: #15151b;
+      border: 1px solid #24242c;
+      border-radius: 20px;
+      padding: 35px;
+      transition: 0.3s;
+    }
+
+    .dashboard-card:hover {
+      border-color: #8b5cf6;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .card-icon {
+      font-size: 28px;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    /* STATISTIKA BLOKI */
+    .stats-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .stat-box {
+      background: #1c1c24;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      border: 1px solid #2a2a35;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 800;
+      color: #8b5cf6;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: #aaa;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* DAROMAD BLOKI */
+    .income-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .income-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .income-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .income-name {
+      color: #ccc;
+    }
+
+    .income-value {
+      color: #10b981; /* Yashil pul rangi */
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #252530;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #8b5cf6, #10b981);
+      border-radius: 10px;
+    }
+
+    .total-income {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #aaa;
+    }
+
+    .total-amount {
+      font-size: 24px;
+      font-weight: 800;
+      color: #8b5cf6;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .social {
+      padding: 15px 25px;
+      border: 1px solid #292932;
+      background: #15151b;
+      border-radius: 12px;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .social:hover {
+      background: #8b5cf6;
+      transform: translateY(-4px);
+    }
+
+    .contact-box {
+      background: #15151b;
+      border: 1px solid #292932;
+      padding: 35px;
+      border-radius: 18px;
+      max-width: 700px;
+    }
+
+    .contact-box p {
+      color: #aaa;
+      margin: 10px 0 25px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid #222;
+      color: #666;
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        padding: 18px 5%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      section {
+        padding: 60px 5%;
+      }
+
+      .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 55px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">
+      MAQSUD<span>.</span>
+    </div>
+
+    <ul>
+      <li><a href="#home">Bosh sahifa</a></li>
+      <li><a href="#about">Men haqimda</a></li>
+      <li><a href="#stats">Statistika</a></li>
+      <li><a href="#contact">Aloqa</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="small-text">
+        Salom, men 👋
+      </div>
+
+      <h1>
+        Maqsud<span>.</span>
+      </h1>
+
+      <p>
+        Digital creator, dizayn va IT sohasiga qiziqadigan
+        yosh ijodkor. Bu mening shaxsiy portfolio saytim.
+      </p>
+
+      <div class="buttons">
+        <a href="#stats" class="btn primary">
+          Natijalarimni ko‘rish 📊
+        </a>
+
+        <a href="https://t.me/Erkinjonovic_m" target="_blank" class="btn">
+          Bog‘lanish 🚀
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about">
+      <h2 class="section-title">
+        Men haqimda 👨‍💻
+      </h2>
+
+      <p class="section-description">
+        Qisqacha o'zim haqimda
+      </p>
+
+      <p>
+        Men dizayn, texnologiya, AI va IT sohalariga qiziqaman.
+        Yangi narsalarni o‘rganish va kreativ loyihalar yaratishni
+        yaxshi ko‘raman.
+      </p>
+    </div>
+  </section>
+
+  <!-- STATISTIKA VA DAROMAD BO'LIMI -->
+  <section id="stats">
+    <h2 class="section-title">
+      Faoliyat natijalari 📈
+    </h2>
+
+    <p class="section-description">
+      Qilingan ishlar statistikasi va sohalar bo'yicha daromad.
+    </p>
+
+    <div class="dashboard-grid">
+
+      <!-- 1. Loyihalar statistikasi -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <span class="card-icon">🚀</span>
+          <h3 class="card-title">Loyihalar statistikasi</h3>
+        </div>
+
+        <div class="stats-container">
+          <div class="stat-box">
+            <div class="stat-number">45+</div>
+            <div class="stat-label">Bajarilgan loyiha</div>
+          </div>
+
+          <div class="stat-box">
+            <div class="stat-number">97%</div>
+            <div class="stat-label">Yoqish darajasi ⭐</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Loyihalardan daromad -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <span class="card-icon">💰</span>
+          <h3 class="card-title">Loyihalardan daromad</h3>
+        </div>
+
+        <div class="income-list">
+          <!-- Grafik dizayn -->
+          <div class="income-item">
+            <div class="income-info">
+              <span class="income-name">🎨 Grafik dizayn</span>
+              <span class="income-value">7.000.000 soʻm</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 70%;"></div>
+            </div>
+          </div>
+
+          <!-- AI Creator -->
+          <div class="income-item">
+            <div class="income-info">
+              <span class="income-name">🤖 AI Creator</span>
+              <span class="income-value">2.000.000 soʻm</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 30%;"></div>
+            </div>
+          </div>
+
+          <!-- Umumiy daromad -->
+          <div class="total-income">
+            <span class="total-label">Umumiy:</span>
+            <span class="total-amount">10.000.000 soʻm+</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOCIAL MEDIA -->
+  <section>
+    <h2 class="section-title">
+      Ijtimoiy tarmoqlar 🌐
+    </h2>
+
+    <p class="section-description">
+      Meni boshqa platformalarda ham kuzatishingiz mumkin.
+    </p>
+
+    <div class="socials">
+      <a class="social" href="https://t.me/Erkinjonovic_m" target="_blank">
+        📱 Telegram
+      </a>
+
+      <a class="social" href="https://t.me/MaxPortfolio_Uz" target="_blank">
+        📂 Portfolio
+      </a>
+
+      <a class="social" href="https://www.instagram.com/erkinjonovic_m" target="_blank">
+        📸 Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-box">
+      <h2>
+        Loyiha qilamizmi? 🤝
+      </h2>
+
+      <p>
+        Hamkorlik yoki loyiha bo‘yicha bog‘lanish uchun
+        Telegram orqali yozishingiz mumkin.
+      </p>
+
+      <a href="https://t.me/Erkinjonovic_m" target="_blank" class="btn primary">
+        Telegram orqali yozish 💬
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Maqsud Portfolio. All rights reserved.
+  </footer>
+
+</body>
+</html>
